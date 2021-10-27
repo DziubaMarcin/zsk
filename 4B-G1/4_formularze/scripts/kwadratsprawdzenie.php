@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 
 if (!empty($_GET['sideA'])){
@@ -18,3 +19,25 @@ if (!empty($_GET['sideA'])){
 }
 
 ?>
+=======
+<?php
+
+if (!empty($_GET['sideA'])){
+  $sideA=str_replace(',','.',$_GET['sideA']);
+  $p = $sideA*$sideA;
+  echo <<<RESULT
+  Pole kwadratu wynosi: $p cm <sup>2</sup>
+  <br>
+  RESULT;
+  $o = 4*$sideA;
+  echo <<< RESULT
+  Obwód kwadratu wynosi: $o cm
+  <hr>
+  RESULT;
+}
+  else {
+  echo "Wypełnij wszystkie pola!";
+}
+
+?>
+>>>>>>> 3f38c779edb040ba80be75f97c3719d8e5a2c00c
