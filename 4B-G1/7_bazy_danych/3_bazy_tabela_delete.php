@@ -14,6 +14,14 @@
 
     $result = $connect->query($sql);
 
+    if (isset($_GET['deleteUser'])) {
+      echo "Usunięto użytkownika o id: $_GET[deleteUser]";
+    }
+
+    if (isset($_GET['error'])) {
+      echo "Nie udało się usunąć rekordu";
+    }
+
     //$row1 = $result->fetch_assoc();
 
     //echo $row1['name'];
@@ -44,7 +52,7 @@
           <td>$row2[surname]</td>
           <td>$row2[birthday]</td>
           <td>$row2[miasto]</td>
-          <td><a href="./scripts/delete.php">Usuń</a></td>
+          <td><a href="./scripts/delete.php?id=$row2[id]">Usuń</a></td>
         </tr>
       ROW;
     }
