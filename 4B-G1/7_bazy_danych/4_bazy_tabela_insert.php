@@ -63,6 +63,23 @@
       </table>
     TABLE;
 
+    if (isset($_GET['addUser'])) {
+      echo <<< FORMADDUSER
+      <h4> Dodawanie Użytkownika </h4>
+      <form action="./scripts/adduser.php" method="post">
+          <input type="text" name="name" placeholder="Podaj Imię"><br>
+          <input type="text" name="surname" placeholder="Podaj Nazwisko"><br>
+          <input type="date" name="birthday"><br>
+          <input type="text" name="cityid" placeholder="Podaj ID miasta"><br>
+          <input type="submit" value="Dodaj użytkownika"><br>
+      </form>
+
+      FORMADDUSER;
+    }
+    else{
+      echo '<a href="./4_bazy_tabela_insert.php?addUser">Dodaj użytkownika</a>';
+    }
+
     $connect->close();
 ?>
   </body>
