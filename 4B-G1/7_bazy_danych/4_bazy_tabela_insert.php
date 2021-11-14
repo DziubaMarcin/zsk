@@ -70,7 +70,18 @@
           <input type="text" name="name" placeholder="Podaj Imię"><br>
           <input type="text" name="surname" placeholder="Podaj Nazwisko"><br>
           <input type="date" name="birthday"><br>
-          <input type="text" name="cityid" placeholder="Podaj ID miasta"><br>
+          <select name="cityid"><br>
+
+      FORMADDUSER;
+
+      $sql = "SELECT * FROM `cities`";
+      $result = $connect->query($sql);
+      while ($city=$result->fetch_assoc()) {
+        echo "<option value=\"$city[id]\">$city[city]</option>";
+      }
+
+      echo <<< FORMADDUSER
+          </select>
           <input type="submit" value="Dodaj użytkownika"><br>
       </form>
 
