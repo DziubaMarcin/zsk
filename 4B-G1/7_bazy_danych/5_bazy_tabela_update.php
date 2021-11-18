@@ -43,6 +43,7 @@
           <th>Data urodzenia</th>
           <th>Miasto</th>
           <th>Usuwanie</th>
+          <th>Aktualizacja</th>
         </tr>
     TABLE;
 
@@ -55,6 +56,7 @@
           <td>$row2[birthday]</td>
           <td>$row2[miasto]</td>
           <td><a href="./scripts/delete.php?id=$row2[id]">Usuń</a></td>
+          <td><a href="./scripts/update.php?id=$row2[id]">Aktualizuj</a></td>
         </tr>
       ROW;
     }
@@ -88,7 +90,32 @@
       FORMADDUSER;
     }
     else{
-      echo '<a href="./4_bazy_tabela_insert.php?addUser">Dodaj użytkownika</a>';
+      echo '<a href="./5_bazy_tabela_update.php?addUser">Dodaj użytkownika</a>';
+    }
+
+    if (isset($_GET['updateUser'])) {
+      echo <<< FORMUPDATEUSER
+      <h4> Aktualizacja Użytkownika o id=$_GET[updateUser] </h4>
+      <form action="./scripts/update.php" method="post">
+          <input type="text" name="name" placeholder="Podaj Imię"><br>
+          <input type="text" name="surname" placeholder="Podaj Nazwisko"><br>
+          <input type="date" name="birthday"><br>
+          <select name="cityid"><br>
+
+      FORMUPDATEUSER;
+
+      $sql = "SELECT * FROM `cities`";
+      $result = $connect->query($sql);
+      while ($city=$result->fetch_assoc()) {
+        echo "<option value=\"$city[id]\">$city[city]</option>";
+      }
+
+      echo <<< FORMUPDATEUSER
+          </select>
+          <input type="submit" value="Aktualizuj użytkownika"><br>
+      </form>
+
+      FORMUPDATEUSER;
     }
 
     $connect->close();
