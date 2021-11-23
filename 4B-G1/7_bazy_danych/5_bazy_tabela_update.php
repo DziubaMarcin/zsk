@@ -96,7 +96,7 @@
     if (isset($_GET['updateUser'])) {
       echo <<< FORMUPDATEUSER
       <h4> Aktualizacja Użytkownika o id=$_GET[updateUser] </h4>
-      <form action="./scripts/update.php" method="post">
+      <form action="./scripts/update.php?id=$_GET[updateUser]" method="post">
           <input type="text" name="name" placeholder="Podaj Imię"><br>
           <input type="text" name="surname" placeholder="Podaj Nazwisko"><br>
           <input type="date" name="birthday"><br>

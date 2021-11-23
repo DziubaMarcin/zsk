@@ -1,23 +1,18 @@
 <?php
-  if (!empty($_POST)) {
     foreach ($_POST as $key => $value) {
       if(empty($value)) {
-        header("location: ../5_bazy_tabela_update.php?error=2&info=Wypełnij wszystkie pola w formularzu!&updateUser=");
+        header("location: ../5_bazy_tabela_update.php?error=2&info=Wypełnij wszystkie pola w formularzu!");
         exit();
       }
     }
     require_once './connect.php';
-    $sql="INSERT INTO `users` (`id`, `cityid`, `name`, `surname`, `birthday`) VALUES (NULL, '$_POST[cityid]', '$_POST[name]', '$_POST[surname]', '$_POST[birthday]');";
+    $sql="UPDATE `users` SET `cityid` = '$_POST[cityid]', `name` = '$_POST[name]', `surname` = '$_POST[surname]', `birthday` = '$_POST[birthday]' WHERE `users`.`id` = '$_GET[id]';";
     $connect->query($sql);
     if ($connect->affected_rows == 1) {
       header("location: ../5_bazy_tabela_update.php?error=2&info=Prawidłowo zaktualizowano użytkownika!");
     }
     else {
-      header("location: ../5_bazy_tabela_update.php?error=2&info=Nie zaktualizowano użytkownika!&updateUser=");
+      header("location: ../5_bazy_tabela_update.php?error=2&info=Nie zaktualizowano użytkownika!&updateUser=$_GET[id]");
     }
     $connect->close();
-  }
-  else{
-    header("location: ../5_bazy_tabela_update.php?error=2&info=Wypełnij wszystkie dane!&updateUser=");
-  }
 ?>
